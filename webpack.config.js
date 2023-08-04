@@ -27,6 +27,20 @@ module.exports = {
         test: /\.html$/,
         use: 'html-loader',
       },
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      }, 
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            outputPath: 'fonts', // Output folder for font files
+            name: '[name].[ext]', // Name of the font file in the output folder
+          },
+        },
+      },
     ],
   },
   plugins: [

@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios"; // Import axios
-
-
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export default function useApplicationData() {
   const [state, setState] = useState({
@@ -11,23 +9,23 @@ export default function useApplicationData() {
 
   const setTab = (tab) => setState({ ...state, currentTab: tab });
 
- useEffect(() => {
+  useEffect(() => {
     // Make the API call using Axios
-    axios.get('https://api.example.com/data')
+    axios.get('https://cerulean-marlin-wig.cyclic.app/activities')
       .then((response) => {
-        setData(response.data);
-        setIsLoading(false);
+        setState((prev) => ({ ...prev, calls: [...response.data] }));
+        console.log(response.data,'state', state.calls);
       })
       .catch((error) => {
-        setError(error);
-        setIsLoading(false);
+        console.log('SAD');
       });
   }, []);
 
 
+  useEffect(() => {
+    console.log('Updated state:', state);
+  }, [state]);
 
+  
   return { state, setTab };
 }
-
-
-

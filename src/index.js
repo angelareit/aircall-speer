@@ -1,6 +1,4 @@
-import './css/body.css';
-import './css/app.css';
-import './css/header.css';
+import './styles/main.scss'; // Import the main SCSS file
 
 import App from './App.jsx';
 
