@@ -1,8 +1,8 @@
-.missed{
+.failed{
   display: flex;
   flex-direction: row;
-  background-color: paleturquoise;
-  .missed-icon{
+  background-color: rosybrown;
+  .fail-icon{
     color: red;
   }
   .timestamp{

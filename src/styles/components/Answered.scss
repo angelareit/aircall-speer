@@ -1,3 +1,14 @@
 .answered{
+  display: flex;
+  flex-direction: row;
   background-color: rosybrown;
+  .answered-icon{
+    color: green;
+  }
+  .timestamp{
+    display: flex;
+    flex-direction: row;
+    right: 0;
+    margin-left: auto;
+  }
 }

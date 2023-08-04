@@ -1,9 +1,10 @@
-.missed{
+.voicemail{
   display: flex;
   flex-direction: row;
   background-color: paleturquoise;
-  .missed-icon{
-    color: red;
+
+  .answered-icon{
+    color: green;
   }
   .timestamp{
     display: flex;

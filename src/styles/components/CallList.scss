@@ -1,0 +1,19 @@
+.call-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: scroll;
+  gap: 10px;
+
+  .day-section{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    h2{
+      color: gray;
+      align-self: center;
+      margin: 1.5em;
+    }
+  }
+}
+
