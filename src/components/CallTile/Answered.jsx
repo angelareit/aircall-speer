@@ -1,5 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhoneSlash } from '@fortawesome/free-solid-svg-icons';
 
 
 const Answered = (props) => {
@@ -9,7 +10,7 @@ const Answered = (props) => {
     <div className="answered">
       <div className="tile-content">
         <h5>Missed Call</h5>
-        <FontAwesomeIcon icon="fa-solid fa-phone-slash" size="lg"/>
+        <FontAwesomeIcon icon={faPhoneSlash} size="lg"/>
         <p> {call.call_type}</p>
       </div>
       <div className="card-body">

@@ -1,27 +1,24 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-
-library.add(fas);
 import Header from './components/Header.jsx';
 import useApplicationData from './hooks/useApplicationData.js';
 import CallTile from './components/CallTile/index.jsx';
 
 const App = () => {
-  const { state, setTab } = useApplicationData();
+  const { state, setCurrentTab } = useApplicationData();
 
   if (state.calls.length === 0) {
     return <div>Loading...</div>;
   }
 
   const allCalls = state.calls.map((call) => {
-    return <CallTile call={call} />;
+    return <CallTile key={call.id} call={call} />;
   });
 
   return (
     <div className='container'>
-      <div className="call-list">{allCalls}</div>
+    <Header onChangeTab={setCurrentTab}/>
+    <div className="call-list">{state.currentTab =='allCalls' && allCalls}</div>
     </div>
   );
 };

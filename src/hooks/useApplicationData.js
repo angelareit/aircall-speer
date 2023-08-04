@@ -7,7 +7,7 @@ export default function useApplicationData() {
     calls: [],
   });
 
-  const setTab = (tab) => setState({ ...state, currentTab: tab });
+  const setCurrentTab = (tab) => setState({ ...state, currentTab: tab });
 
   useEffect(() => {
     // Make the API call using Axios
@@ -27,5 +27,5 @@ export default function useApplicationData() {
   }, [state]);
 
   
-  return { state, setTab };
+  return { state, setCurrentTab };
 }

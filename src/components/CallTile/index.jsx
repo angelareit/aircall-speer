@@ -1,7 +1,8 @@
 import React from 'react';
 import useVisualMode from '../../hooks/useVisualMode';
 import Answered from './Answered.jsx';
-import Missed from './Missed.jsx';
+import Missed from './missed';
+
 
 const CallTile = (props) => {
   const { id, created_at, direction, from, to, via, duration, is_archived, call_type } = props.call;

@@ -1,13 +1,17 @@
 import React from 'react';
-import '../../styles/components/Missed.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhoneSlash } from '@fortawesome/free-solid-svg-icons';
+
+
 const Missed = (props) => {
   const { call } = props;
 
   return (
     <div className='missed'>
-      <div className="tile-header">
+     <div className="tile-content">
         <h5>Missed Call</h5>
-        <i className="fas fa-home"></i>
+        <FontAwesomeIcon icon={faPhoneSlash} size="lg"/>
+        <p> {call.call_type}</p>
       </div>
       <div className="card-body">
         <p><strong>Call ID:</strong> {call.id}</p>
