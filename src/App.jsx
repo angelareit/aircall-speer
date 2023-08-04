@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Header from './components/Header.jsx';
+import useApplicationData from './hooks/useApplicationData.js';
 
-import Header from './Header.jsx';
+
 
 const App = () => {
   return (
