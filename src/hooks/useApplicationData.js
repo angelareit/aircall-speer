@@ -32,8 +32,8 @@ export default function useApplicationData() {
       });
   }
 
-  const unArchiveAll = function() {
-    axios.patch('https://cerulean-marlin-wig.cyclic.app/reset')
+  const resetAllCalls = function() {
+   return axios.patch('https://cerulean-marlin-wig.cyclic.app/reset')
       .then((response) => {
         getUpdatedCalls();
       })
@@ -41,6 +41,39 @@ export default function useApplicationData() {
         console.log('SAD3');
       });
   }
+
+  const unArchiveAllCalls = () => {
+    const updatePromises = state.calls.map((call) => {
+      if (call.call_type) {
+        return axios.patch(`https://cerulean-marlin-wig.cyclic.app/activities/${call.id}`, {
+          is_archived: false
+        }).catch(() => { console.log('ERROR HERE', call.id); });
+      }
+      return Promise.resolve(); // Resolve immediately if the call is already archived
+    });
+
+   return Promise.all(updatePromises)
+      .then(() => {
+        getUpdatedCalls(); // Fetch updated calls after archiving all
+      })
+      .catch((error) => {
+        console.log('Error unArchiving calls:', error);
+      });
+  };
+
+  function unArchiveCall (id) {
+    return axios.patch(`https://cerulean-marlin-wig.cyclic.app/activities/${id}`, {
+       is_archived: false
+     })
+       .then((response) => {
+         console.log(response.data);
+         getUpdatedCalls(); // Trigger update of call list in the parent component
+   
+       })
+       .catch((error) => {
+         console.log('SAD ARCHIVE', error);
+       });
+   }
 
   const archiveAllCalls = () => {
     const updatePromises = state.calls.map((call) => {
@@ -52,7 +85,7 @@ export default function useApplicationData() {
       return Promise.resolve(); // Resolve immediately if the call is already archived
     });
 
-    Promise.all(updatePromises)
+   return Promise.all(updatePromises)
       .then(() => {
         getUpdatedCalls(); // Fetch updated calls after archiving all
       })
@@ -82,5 +115,5 @@ export default function useApplicationData() {
   }, [state]);
 
 
-  return { state, setCurrentTab, getUpdatedCalls, unArchiveAll, archiveAllCalls, archiveCall };
+  return { state, setCurrentTab, getUpdatedCalls,resetAllCalls,unArchiveCall,unarchiveAllCalls: unArchiveAllCalls ,resetAllCalls, archiveAllCalls, archiveCall };
 }

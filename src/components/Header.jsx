@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisVertical, faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
 
 
 const Header = (props) => {
-  const [activeTab, setActiveTab] = useState('inbox');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
 
   const handleTabClick = (tabName) => {
     setActiveTab(tabName);
+  };
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
   return (
@@ -21,9 +25,20 @@ const Header = (props) => {
       </div>
 
       <div className='header-tabs'>
-        <button onClick={() => props.onChangeTab('inbox')} ><h2>Inbox</h2></button>
-        <button onClick={() => props.onChangeTab('allCalls')}><h2>All calls</h2></button>
-        <FontAwesomeIcon icon={faEllipsisVertical} size='2xl' onClick={() => handleTabClick('settings')} />
+        <button className={`tab ${props.currentTab === 'inbox' ? 'activeTab' : ' '}`} onClick={() => { props.onChangeTab('inbox'); }} ><h2>Inbox</h2></button>
+        <button className={`tab ${props.currentTab === 'allCalls' ? 'activeTab' : ' '}`} onClick={() => { props.onChangeTab('allCalls'); }}><h2>All calls</h2></button>
+        <div className='dropdown' onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown} >
+          <div className='dropdown-bttn'>
+            <FontAwesomeIcon icon={faEllipsisVertical} size='xl' />
+          </div>
+
+          {isDropdownOpen && (
+            <div className="dropdown-content">
+              <button onClick={props.handleResetCalls}><h3>Reset</h3></button>
+
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );

@@ -5,22 +5,37 @@
   overflow-y: scroll;
   gap: 10px;
 
-  .day-section{
+  .day-section {
     display: flex;
     flex-direction: column;
     align-content: center;
 
-    .date-header{
+    .date-header {
       display: flex;
       flex-direction: column;
       align-content: center;
-      h2{
+
+      h2 {
         color: rgb(184, 182, 182);
         align-self: center;
         margin: 1em;
       }
-  
+    }
+  }
+
+  .archive-btn {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    margin: 5px 15px;
+    border: 3px solid #EEEEEE;
+    justify-content: center;
+    height: 40px;
+    cursor: pointer;
+    h2 {
+      color: rgb(139, 28, 28);
+      align-self: center;
+      margin: 1em;
     }
   }
 }
-

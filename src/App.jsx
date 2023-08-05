@@ -5,13 +5,14 @@ import useApplicationData from './hooks/useApplicationData.js';
 import CallList from './components/CallList.jsx';
 
 const App = () => {
-  const { state, setCurrentTab , getUpdatedCalls, unArchiveAll, archiveAllCalls, archiveCall} = useApplicationData();
+  const { state, setCurrentTab, getUpdatedCalls, resetAllCalls,unarchiveAllCalls, unArchiveCall, archiveAllCalls, archiveCall } = useApplicationData();
 
   return (
     <div className='container'>
-      <Header onChangeTab={setCurrentTab} />
-      {state.currentTab == 'inbox' && <CallList calls={state.calls} currentTab={state.currentTab} onUpdateCalls={getUpdatedCalls} onUnarchiveAll={unArchiveAll}   onArchiveCall={archiveCall}/>}
-      {state.currentTab == 'allCalls' && <CallList calls={state.calls} currentTab={state.currentTab} onUpdateCalls={getUpdatedCalls} onArchiveAll={archiveAllCalls}   onArchiveCall={archiveCall}/>}
+      <Header onChangeTab={setCurrentTab} handleResetCalls={resetAllCalls} currentTab={state.currentTab}  />
+      {state.currentTab == 'inbox' && <CallList calls={state.calls} currentTab={state.currentTab}  onUnarchiveAll={unarchiveAllCalls} onArchiveAll={archiveAllCalls}  onArchiveCall={archiveCall} />}
+      {state.currentTab == 'allCalls' && <CallList calls={state.calls} currentTab={state.currentTab} onUnarchiveAll={unarchiveAllCalls} onUpdateCalls={getUpdatedCalls} 
+      onArchiveAll={archiveAllCalls} onArchiveCall={archiveCall} />}
 
     </div>
   );

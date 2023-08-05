@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhoneSlash } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner, faBoxArchive } from '@fortawesome/free-solid-svg-icons';
 import CallTile from './CallTile/index.jsx';
 import { organizeCallsByDateNotArchived } from '../helpers/selectors.js';
+import useVisualMode from '../hooks/useVisualMode.js';
 
 const CallList = (props) => {
-  const { calls, onUpdateCalls} = props;
+  const { calls, onUpdateCalls } = props;
   const [activeCallId, setActiveCallId] = useState(null);
 
   const allCalls = calls.map((call) => {
@@ -21,6 +22,10 @@ const CallList = (props) => {
       );
     }
   });
+
+  const LOADING = "LOADING";
+  const DISPLAY = "DISPLAY";
+  const { mode, transition } = useVisualMode(DISPLAY);
 
   const organizedCallsByDate = organizeCallsByDateNotArchived(calls);
 
@@ -44,23 +49,42 @@ const CallList = (props) => {
     </div>
   ));
 
-  return (<>
-    {props.currentTab == 'inbox' &&
-      <div className="call-list">
-        <h1>{props.currentTab}</h1>
-        <button onClick={props.onUnarchiveAll}> RESET</button>
-        {sectionedCalls}
-      </div>
-    }
-    {props.currentTab == 'allCalls' &&
-      <div className="call-list">
-        <h1>{props.currentTab}</h1>
-        <button onClick={props.onArchiveAll}> Archive All</button>
-        {allCalls}
-      </div>
-    }
+  const handleArchiveAll = () => {
+    transition(LOADING);
+    props.onArchiveAll()
+      .then(() => { transition(DISPLAY) })
+      .catch(() => { transition(DISPLAY) });
+  }
+  const handleUnarchiveAll = () => {
+    transition(LOADING);
+    props.onUnarchiveAll()
+      .then(() => { transition(DISPLAY) })
+      .catch(() => { transition(DISPLAY) });
+  }
 
-  </>
+  return (
+    <>
+      {props.currentTab == 'inbox' &&
+        <div className="call-list">
+          <div className={'archive-btn'} onClick={handleArchiveAll}>
+            <FontAwesomeIcon icon={faBoxArchive} />
+            <h2> Archive All</h2>
+          </div>
+          {mode === DISPLAY && sectionedCalls}
+          {mode === LOADING && <FontAwesomeIcon icon={faSpinner} spinPulse size="2xl" />}
+
+        </div>
+      }
+      {props.currentTab == 'allCalls' &&
+        <div className="call-list">
+          <h1>{props.currentTab}</h1>
+          <button onClick={handleUnarchiveAll}> RESET</button>
+          {mode === LOADING && <FontAwesomeIcon icon={faSpinner} spinPulse size="2xl" />}
+          {mode === DISPLAY && allCalls}
+        </div >
+      }
+
+    </>
 
   );
 };
