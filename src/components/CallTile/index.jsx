@@ -19,18 +19,28 @@ const CallTile = (props) => {
     // Implement the logic to archive the call here
     // You can use the call id and an API call to mark the call as archived in your data source
     console.log("Archiving call with id:", id);
-    axios.patch(`https://cerulean-marlin-wig.cyclic.app/activities/${id}`, {
-        is_archived: true
-      })
-      .then((response) => {
-        console.log(response.data);
-        transition(ARCHIVE);
-        props.onUpdateCalls(); // Trigger update of call list in the parent component
-      })
-      .catch((error) => {
-        console.log('SAD ARCHIVE', error);
-        transition(DEFAULT);
-      });
+
+    props.onArchiveCall(id).then((success) => {
+      console.log('archive success');
+      transition(ARCHIVE);
+    }).catch((error) => {
+      console.log('SAD ARCHIVE', error);
+      transition(DEFAULT);
+    });
+
+
+    /*    axios.patch(`https://cerulean-marlin-wig.cyclic.app/activities/${id}`, {
+           is_archived: true
+         })
+         .then((response) => {
+           console.log(response.data);
+           transition(ARCHIVE);
+           props.onUpdateCalls(); // Trigger update of call list in the parent component
+         })
+         .catch((error) => {
+           console.log('SAD ARCHIVE', error);
+           transition(DEFAULT);
+         }); */
   };
 
   const handleToggleActive = () => {
@@ -50,7 +60,7 @@ const CallTile = (props) => {
 
         {/* Conditionally render the archive button when active */}
         {isActive && !is_archived && mode === DEFAULT && (
-          <button onClick={handleArchive}>Archive</button>
+          <div onClick={handleArchive}>Archive all calls</div>
         )}
       </article>
     }

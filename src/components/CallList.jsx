@@ -5,7 +5,7 @@ import CallTile from './CallTile/index.jsx';
 import { organizeCallsByDateNotArchived } from '../helpers/selectors.js';
 
 const CallList = (props) => {
-  const { calls, onUpdateCalls } = props;
+  const { calls, onUpdateCalls} = props;
   const [activeCallId, setActiveCallId] = useState(null);
 
   const allCalls = calls.map((call) => {
@@ -15,6 +15,7 @@ const CallList = (props) => {
           key={call.id}
           call={call}
           isActive={call.id === activeCallId}
+          onArchiveCall={props.onArchiveCall}
           onUpdateCalls={onUpdateCalls}
         />
       );
@@ -35,6 +36,7 @@ const CallList = (props) => {
             call={call}
             isActive={call.id === activeCallId}
             onUpdateCalls={onUpdateCalls}
+            onArchiveCall={props.onArchiveCall}
             onToggleActive={() => setActiveCallId((prevId) => (prevId === call.id ? null : call.id))}
           />
         )
@@ -42,11 +44,24 @@ const CallList = (props) => {
     </div>
   ));
 
-  return (
-    <div className="call-list">
-      <button onClick={props.onUnarchiveAll}> RESET</button>
-      {sectionedCalls}
-    </div>
+  return (<>
+    {props.currentTab == 'inbox' &&
+      <div className="call-list">
+        <h1>{props.currentTab}</h1>
+        <button onClick={props.onUnarchiveAll}> RESET</button>
+        {sectionedCalls}
+      </div>
+    }
+    {props.currentTab == 'allCalls' &&
+      <div className="call-list">
+        <h1>{props.currentTab}</h1>
+        <button onClick={props.onArchiveAll}> Archive All</button>
+        {allCalls}
+      </div>
+    }
+
+  </>
+
   );
 };
 
