@@ -1,6 +1,6 @@
 ## Summary
 
-The goal of this test is to make you code a small ReactJS app. We have prepared a skeleton app for you, but please change whatever you want (CSS files, HTML structure, JS structure, etc).
+This is a front-end technical assesment for Speer.IO.
 
 The app will have the following features:
 - **Activity Feed** - simple list of calls
