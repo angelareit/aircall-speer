@@ -1,7 +1,9 @@
 .answered{
   display: flex;
   flex-direction: row;
-  background-color: rosybrown;
+  align-items: center;
+  width: 100%;
+  background-color: palegreen;
   .answered-icon{
     color: green;
   }

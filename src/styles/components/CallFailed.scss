@@ -1,6 +1,7 @@
 .failed{
   display: flex;
   flex-direction: row;
+  align-items: center;
   background-color: rosybrown;
   .fail-icon{
     color: red;

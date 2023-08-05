@@ -9,10 +9,17 @@
     display: flex;
     flex-direction: column;
     align-content: center;
-    h2{
-      color: gray;
-      align-self: center;
-      margin: 1.5em;
+
+    .date-header{
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      h2{
+        color: rgb(184, 182, 182);
+        align-self: center;
+        margin: 1em;
+      }
+  
     }
   }
 }

@@ -5,12 +5,12 @@ import useApplicationData from './hooks/useApplicationData.js';
 import CallList from './components/CallList.jsx';
 
 const App = () => {
-  const { state, setCurrentTab } = useApplicationData();
+  const { state, setCurrentTab , getUpdatedCalls, unArchiveAll} = useApplicationData();
 
   return (
     <div className='container'>
       <Header onChangeTab={setCurrentTab} />
-      {state.currentTab == 'allCalls' && <CallList calls={state.calls} />}
+      {state.currentTab == 'allCalls' && <CallList calls={state.calls} onUpdateCalls={getUpdatedCalls} onUnarchiveAll={unArchiveAll} />}
     </div>
   );
 };

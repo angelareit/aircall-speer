@@ -4,7 +4,8 @@
   border: 3px solid #EEEEEE;
   border-radius: 15px;
   color: black;
-  
+  display: flex;
+  flex-direction: row;
   p{
     margin: 5px;
   }

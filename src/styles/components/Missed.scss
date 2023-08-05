@@ -1,7 +1,9 @@
 .missed{
   display: flex;
   flex-direction: row;
+  align-items: center;
   background-color: paleturquoise;
+  width: 100%;
   .missed-icon{
     color: red;
   }
