@@ -1,12 +1,63 @@
-.call-tile{
-  height: 50px;
-  margin: 5px 15px;
-  border: 3px solid #EEEEEE;
-  border-radius: 15px;
-  color: black;
+@import '../_mixins.scss';
+@import '../_variables.scss';
+
+
+.call-container {
   display: flex;
   flex-direction: row;
-  p{
-    margin: 5px;
+  align-items: center;
+  gap: 5px;
+  margin: 5px 15px;
+
+  .call-tile {
+    height: 60px;
+    border: 3px solid $primaryGray1;
+    border-radius: 15px;
+    width: 100%;
+    color: $fontCol1;
+    display: flex;
+    flex-direction: row;
+
+    p {
+      margin: 5px;
+    }
+
+    &:hover {
+      @include hoverGray;
+      border: 3px solid $primaryGray1-50;
+
+    }
+
+    &.active {
+      border: 3px solid $primaryRed1;
+
+      &:hover {
+        box-shadow: 1px 1px 3px 0px rgba(128, 128, 128, 0);
+      }
+    }
+  }
+  .archived-state{
+    border: 3px solid $primaryGray1-20;
+    background-color: $primaryGray1-20;
+    color:$primaryGray1-20 ;
+  }
+
+  .archive-bttn {
+    margin: 0px;
+    height: 60px;
+    aspect-ratio: 1/1;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid $primaryRed1;
+    background-color: transparent;
+    color:  $primaryRed1;
+
+    &:hover {
+      color: white;
+      background-color: $primaryRed1;
+      border: 3px solid transparent;
+    }
   }
 }

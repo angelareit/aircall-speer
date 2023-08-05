@@ -1,3 +1,6 @@
+@import '../_mixins.scss';
+@import '../_variables.scss';
+
 .call-list {
   display: flex;
   flex-direction: column;
@@ -23,19 +26,58 @@
     }
   }
 
+  button {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    margin: 5px 10px;
+    padding: 5px 15px;
+    border: 3px solid #EEEEEE;
+    border-radius: 5px;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    height: 40px;
+    cursor: pointer;
+
+    h2 {
+      align-self: center;
+      font-size: small;
+      margin: 1em;
+    }
+
+    &:hover {
+      height: 40px;
+      border: 3px solid $primaryOrange1;
+      background-color: $primaryOrange-50;
+
+    }
+  }
+
   .archive-btn {
     display: flex;
     flex-direction: row;
     align-content: center;
-    margin: 5px 15px;
+    margin: 15px 10px;
+    padding: 5px 15px;
     border: 3px solid #EEEEEE;
-    justify-content: center;
+    border-radius: 5px;
+    justify-content: start;
+    align-items: center;
     height: 40px;
     cursor: pointer;
+
     h2 {
-      color: rgb(139, 28, 28);
       align-self: center;
+      font-size: small;
       margin: 1em;
+    }
+
+    &:hover {
+      border: 3px solid green;
+      background-color: rgba(164, 225, 73, 0.498);
+      color: green;
+
     }
   }
 }

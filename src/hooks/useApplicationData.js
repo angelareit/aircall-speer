@@ -25,7 +25,6 @@ export default function useApplicationData() {
     axios.get('https://cerulean-marlin-wig.cyclic.app/activities')
       .then((response) => {
         setState((prev) => ({ ...prev, calls: [...response.data] }));
-        console.log(response.data, 'sUPDATEEEE', state.calls);
       })
       .catch((error) => {
         console.log('SAD2');
@@ -111,7 +110,7 @@ export default function useApplicationData() {
 
 
   useEffect(() => {
-    console.log('Updated state:', state);
+  //  console.log('Updated state:', state);
   }, [state]);
 
 

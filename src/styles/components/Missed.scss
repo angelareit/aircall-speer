@@ -1,16 +1,35 @@
-.missed{
+@import '../_mixins.scss';
+@import '../_variables.scss';
+
+.missed {
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: paleturquoise;
   width: 100%;
-  .missed-icon{
+
+  .call-details{
+    display: flex;
+    flex-direction: column;
+    color: $fontCol1;
+
+    h3{
+      font-size: medium;
+      font-weight: 700;
+    }
+    p{
+      margin: 0;
+    }
+  }
+
+  .missed-icon {
+    margin: 5px 10px;
     color: red;
   }
-  .timestamp{
+
+  .timestamp {
     display: flex;
     flex-direction: row;
     margin-left: auto;
-
+    color: $fontCol1;
   }
 }

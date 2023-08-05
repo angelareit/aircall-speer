@@ -1,16 +1,34 @@
+@import '../_mixins.scss';
+@import '../_variables.scss';
+
 .answered{
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 100%;
-  background-color: palegreen;
-  .answered-icon{
+
+  .call-details{
+    display: flex;
+    flex-direction: column;
+    color:  $fontCol1;
+    h3{
+      font-size: medium;
+      font-weight: 700;
+    }
+    p{
+      margin: 0;
+    }
+  }
+
+  .answered-icon {
+    margin: 5px 10px;
     color: green;
   }
-  .timestamp{
+
+  .timestamp {
     display: flex;
     flex-direction: row;
-    right: 0;
     margin-left: auto;
+    color: $fontCol1;
   }
 }

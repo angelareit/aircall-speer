@@ -1,3 +1,6 @@
+@import '../_mixins.scss';
+@import '../_variables.scss';
+
 .failed{
   display: flex;
   flex-direction: row;
@@ -10,6 +13,7 @@
     display: flex;
     flex-direction: row;
     margin-left: auto;
+    color:  $fontCol1;
 
   }
 }

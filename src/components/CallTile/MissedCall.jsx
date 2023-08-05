@@ -19,8 +19,9 @@ const MissedCall = (props) => {
         <FontAwesomeIcon icon={faPhoneSlash} size="lg" />
       </div>
       <div className="call-details">
-        <p> {call.from}</p>
-        <p> {call.via}</p>
+        <h3> + {call.to}</h3>
+        {call.via ? <p>  <strong>{call.from}</strong> tried to call using <strong>{call.via}</strong></p>
+          : <p> {call.from} tried to call.</p>}
       </div>
       <div className="timestamp">
         <p><strong>{formattedTimestamp}</strong> { }</p>

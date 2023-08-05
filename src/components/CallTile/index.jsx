@@ -4,6 +4,8 @@ import AnsweredCall from './AnsweredCall.jsx';
 import MissedCall from './MissedCall.jsx';
 import VoicemailCall from './VoicemailCall.jsx';
 import CallFailed from './CallFailed.jsx';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBoxArchive } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
 const CallTile = (props) => {
@@ -19,28 +21,24 @@ const CallTile = (props) => {
     // Implement the logic to archive the call here
     // You can use the call id and an API call to mark the call as archived in your data source
     console.log("Archiving call with id:", id);
+    if (!is_archived) {
+      props.onArchiveCall(id).then((success) => {
+        console.log('archive success');
+        transition(ARCHIVE);
+      }).catch((error) => {
+        console.log('SAD ARCHIVE', error);
+        transition(DEFAULT);
+      });
+    } else {
+      props.onUnarchiveCall(id).then((success) => {
+        console.log('unarchive success');
+        transition(ARCHIVE);
+      }).catch((error) => {
+        console.log('SAD UNARCHIVE', error);
+        transition(DEFAULT);
+      });
+    }
 
-    props.onArchiveCall(id).then((success) => {
-      console.log('archive success');
-      transition(ARCHIVE);
-    }).catch((error) => {
-      console.log('SAD ARCHIVE', error);
-      transition(DEFAULT);
-    });
-
-
-    /*    axios.patch(`https://cerulean-marlin-wig.cyclic.app/activities/${id}`, {
-           is_archived: true
-         })
-         .then((response) => {
-           console.log(response.data);
-           transition(ARCHIVE);
-           props.onUpdateCalls(); // Trigger update of call list in the parent component
-         })
-         .catch((error) => {
-           console.log('SAD ARCHIVE', error);
-           transition(DEFAULT);
-         }); */
   };
 
   const handleToggleActive = () => {
@@ -50,21 +48,18 @@ const CallTile = (props) => {
   };
 
   return (
-    <> {!is_archived &&
-      <article className={`call-tile ${isActive ? 'active' : ''}`} onClick={handleToggleActive}>
-        {/* Render the appropriate call component based on the call_type */}
+    <article className='call-container'>
+      <div className={`call-tile ${isActive ? 'active' : ''} ${is_archived && props.viewArchivedState && 'archived-state'}`} onClick={handleToggleActive}>
         {call_type === "missed" && <MissedCall call={props.call} />}
         {call_type === "answered" && <AnsweredCall call={props.call} />}
         {call_type === "voicemail" && <VoicemailCall call={props.call} />}
         {!call_type && <CallFailed call={props.call} />}
+      </div>
 
-        {/* Conditionally render the archive button when active */}
-        {isActive && !is_archived && mode === DEFAULT && (
-          <div onClick={handleArchive}>Archive all calls</div>
-        )}
-      </article>
-    }
-    </>
+      {isActive && mode === DEFAULT &&
+        <div className={'archive-bttn'} onClick={handleArchive}><FontAwesomeIcon icon={faBoxArchive} size='xl' /></div>
+      }
+    </article>
 
   );
 };

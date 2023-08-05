@@ -1,0 +1,4 @@
+@mixin hoverGray{
+  -webkit-box-shadow: 1px 1px 3px 0px rgba(128, 128, 128, 0.25);
+  box-shadow: 1px 1px 3px 0px rgba(128, 128, 128, 0.25);
+}
