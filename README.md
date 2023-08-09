@@ -11,8 +11,10 @@ The app has the following features:
 
 This web app was completed within a span of 48 hours.
 #### Example image:
-
 ![app](https://user-images.githubusercontent.com/630714/29357034-763d7216-8276-11e7-8bcb-e77d9645dfcc.png)
+
+#### Completed application: 
+![app-gif-1](https://github.com/angelareit/aircall-speer/blob/main/docs/aircall-userflow.gif?raw=true)
 
 ## Installation
 
