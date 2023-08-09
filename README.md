@@ -10,7 +10,7 @@ The app has the following features:
 - A button to unarchive all calls in the archived calls tab
 
 This web app was completed within a span of 48 hours.
-#### Example image:
+#### Reference image:
 ![app](https://user-images.githubusercontent.com/630714/29357034-763d7216-8276-11e7-8bcb-e77d9645dfcc.png)
 
 #### Completed application: 
